@@ -1,8 +1,6 @@
 # UDP-Ping-Pong-Attack-Simulation-
 Simulating and mitigating UDP Ping Pong attacks to demonstrate network vulnerabilities and defense strategies.
 
-# UDP Ping Pong Attack Simulation
-
 ## Repository Description
 
 This repository provides a comprehensive simulation of the UDP Ping Pong Attack, demonstrating how an attacker exploits UDP's connectionless nature by spoofing packets to cause network congestion and potential denial-of-service (DoS). It includes scripts, explanations, and mitigation strategies to understand, reproduce, and prevent such attacks.

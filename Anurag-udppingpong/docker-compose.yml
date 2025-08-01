@@ -1,0 +1,60 @@
+version: "3"
+
+services:
+    attacker-anurag:
+        image: handsonsecurity/seed-ubuntu:large
+        container_name: attacker-anurag-10.9.0.25
+        tty: true
+        cap_add:
+            - ALL
+        privileged: true
+        volumes:
+            - ./volumes:/volumes
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.25
+        command: bash -c "
+            apt update && apt install -y python &&
+            tail -f /dev/null"
+
+    victim:
+        image: handsonsecurity/seed-ubuntu:large
+        container_name: victim-10.9.0.5
+        tty: true
+        cap_add:
+            - ALL
+        privileged: true
+        volumes:
+            - ./volumes:/volumes
+        sysctls:
+            - net.ipv4.tcp_syncookies=0
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.5
+        command: bash -c "
+            apt update && apt install -y python &&
+            tail -f /dev/null"
+
+    server:
+        image: handsonsecurity/seed-ubuntu:large
+        container_name: server-10.9.0.2
+        tty: true
+        cap_add:
+            - ALL
+        privileged: true
+        volumes:
+            - ./volumes:/volumes
+        networks:
+            net-10.9.0.0:
+                ipv4_address: 10.9.0.2
+        command: bash -c "
+            apt update && apt install -y python &&
+            tail -f /dev/null"
+
+networks:
+    net-10.9.0.0:
+        name: net-10.9.0.0
+        ipam:
+            config:
+                - subnet: 10.9.0.0/24
+
